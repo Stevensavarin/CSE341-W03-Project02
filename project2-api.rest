@@ -1,0 +1,56 @@
+# ====================================
+# GET ALL ITEMS
+# ====================================
+GET http://localhost:3000/items
+Accept: application/json
+
+###
+
+# ====================================
+# GET ITEM BY ID
+# ====================================
+GET http://localhost:3000/items/68ce8ac713d121d53eaa76e9
+Accept: application/json
+
+###
+
+# ====================================
+# CREATE ITEM
+# ====================================
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+  "name": "Teclado Mecánico",
+  "description": "Teclado con switches azules",
+  "category": "Electrónica",
+  "price": 90,
+  "inStock": true
+}
+
+###
+
+# ====================================
+# UPDATE ITEM (editar todos los campos)
+# ====================================
+PUT http://localhost:3000/items/68ce8ac713d121d53eaa76e9
+Content-Type: application/json
+
+{
+  "name": "Teclado Mecánico RGB",
+  "description": "Teclado con switches azules y luces RGB",
+  "category": "Electrónica",
+  "price": 100,
+  "inStock": false
+}
+
+###
+
+# ====================================
+# DELETE ITEM
+# ====================================
+DELETE http://localhost:3000/items/68ce8ac713d121d53eaa76e9
+Accept: application/json
+
+###
+
