@@ -7,22 +7,22 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("../swagger.json");
 
 const app = express();
+
+// Conectar a MongoDB
 connectDB();
 
+// Middleware global
 app.use(cors());
 app.use(express.json());
 
-// Health check
-app.get("/", (req, res) => {
-  res.send("🚀 Project 2 API is running!");
-});
-
-// Items API CRUD
-app.use("/items", require("./routes/items"));
+// Routes
+app.use("/", require("./routes"));
 
 // Swagger docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+// PORT
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 

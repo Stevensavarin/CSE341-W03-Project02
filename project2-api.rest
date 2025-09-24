@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 # ====================================
-# UPDATE ITEM (editar todos los campos)
+# UPDATE ITEM
 # ====================================
 PUT http://localhost:3000/items/68ce8ac713d121d53eaa76e9
 Content-Type: application/json
@@ -54,3 +54,37 @@ Accept: application/json
 
 ###
 
+### =====================
+### USERS COLLECTION
+### =====================
+
+### Get all users
+GET http://localhost:3000/users
+Accept: application/json
+
+### Get user by ID
+GET http://localhost:3000/users/id
+Accept: application/json
+
+### Create user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "Steven Savarin",
+  "email": "steven@example.com",
+  "role": "admin"
+}
+
+### Update user
+PUT http://localhost:3000/users/id
+Content-Type: application/json
+
+{
+  "name": "Steven Updated",
+  "email": "steven_updated@example.com",
+  "role": "customer"
+}
+
+### Delete user
+DELETE http://localhost:3000/users/id

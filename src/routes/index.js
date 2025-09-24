@@ -1,15 +1,21 @@
 const router = require("express").Router();
 
 // Swagger docs
-router.use("/", require("./swagger"));
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("../../swagger.json");
+router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-// Hello World testing
+// Health check
 router.get("/", (req, res) => {
   //#swagger.tags = ['Root']
-  res.send("Hello Project 2!");
+  res.send("🚀 Project 2 API is running!");
 });
 
 // Items CRUD
 router.use("/items", require("./items"));
 
+// Users CRUD
+router.use("/users", require("./users"));
+
 module.exports = router;
+

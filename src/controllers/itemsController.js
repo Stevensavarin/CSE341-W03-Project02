@@ -3,7 +3,7 @@ const Item = require("../models/Item");
 // ======================
 // GET ALL ITEMS
 // ======================
-const getAllItems = async (req, res) => {
+const getItems = async (req, res) => {
   try {
     const items = await Item.find();
     res.json(items);
@@ -38,11 +38,6 @@ const createItem = async (req, res) => {
   try {
     const { name, description, category, price, inStock } = req.body;
 
-    // Validación básica
-    if (!name || price === undefined) {
-      return res.status(400).json({ message: "Name and price are required" });
-    }
-
     const newItem = new Item({
       name,
       description,
@@ -66,11 +61,6 @@ const updateItem = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description, category, price, inStock } = req.body;
-
-    // Basic validation
-    if (!name || price === undefined) {
-      return res.status(400).json({ message: "Name and price are required" });
-    }
 
     const updatedItem = await Item.findByIdAndUpdate(
       id,
@@ -112,10 +102,11 @@ const deleteItem = async (req, res) => {
 // EXPORT CONTROLLERS
 // ======================
 module.exports = {
-  getAllItems,
+  getItems,
   getItemById,
   createItem,
   updateItem,
   deleteItem
 };
+
 
