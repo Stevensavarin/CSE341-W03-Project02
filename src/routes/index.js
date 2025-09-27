@@ -1,21 +1,25 @@
 const router = require("express").Router();
-
-// Swagger docs
-const swaggerUi = require("swagger-ui-express");
-const swaggerFile = require("../../swagger.json");
-router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
-// Health check
-router.get("/", (req, res) => {
-  //#swagger.tags = ['Root']
-  res.send("🚀 Project 2 API is running!");
-});
+const passport = require("passport");
 
 // Items CRUD
 router.use("/items", require("./items"));
 
 // Users CRUD
 router.use("/users", require("./users"));
+
+// Swagger
+router.use('/', require('./swagger'));
+
+router.get("/login", passport.authenticate("github"), (req, res) => {});
+
+router.get('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
+});
 
 module.exports = router;
 
